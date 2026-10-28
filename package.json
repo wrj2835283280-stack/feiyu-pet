@@ -1,0 +1,1 @@
+﻿{"name":"feiyu-pet","version":"1.0.0","private":true,"description":"大肥鱼桌宠 - DeepSeek Flash 拟人","main":"src/main.js","scripts":{"start":"electron .","dev":"electron . --dev"},"devDependencies":{"electron":"33.2.0"}}

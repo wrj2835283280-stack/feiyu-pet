@@ -1,0 +1,9 @@
+node_modules/
+data/
+shots/
+*.log
+
+# 旧素材 / 第三方表情包备份，不发布
+assets/_stickers_old_*/
+assets/_qq-stickers_old_*/
+assets/cards/

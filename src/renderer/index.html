@@ -1,0 +1,227 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' http://127.0.0.1:*;">
+  <title>饭饭 · 大肥鱼桌宠</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app" data-tier="1" data-form="neutral" data-mood="calm">
+  <div id="ambient" aria-hidden="true">
+    <div id="rays"></div>
+    <div id="aura"></div>
+    <div id="floor-glow"></div>
+    <div id="ambient-bubbles"></div>
+  </div>
+
+  <div id="fx-wrap" aria-hidden="true"><canvas id="fx"></canvas></div>
+
+  <div id="pet-stage">
+    <div id="pet-shadow"></div>
+    <div id="pet-look">
+      <div id="pet-bob">
+        <div id="pet-react" class="hit">
+          <img id="pet-img" class="pet-img" alt="饭饭" draggable="false">
+          <img id="pet-img-b" class="pet-img hidden" alt="" draggable="false">
+          <div id="blush"><span class="b b1"></span><span class="b b2"></span></div>
+          <div id="bowl-prop" class="hidden" aria-hidden="true">
+            <svg viewBox="0 0 110 100" width="110" height="100">
+              <defs>
+                <linearGradient id="bowlBody" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#f7fcff"/>
+                  <stop offset=".55" stop-color="#d7ecff"/>
+                  <stop offset="1" stop-color="#a9d3f7"/>
+                </linearGradient>
+                <linearGradient id="riceTop" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#ffffff"/>
+                  <stop offset="1" stop-color="#eef8ff"/>
+                </linearGradient>
+              </defs>
+              <ellipse cx="55" cy="87" rx="38" ry="8" fill="rgba(18,48,86,.18)"/>
+              <path d="M12 48h86c-2 25-18 41-43 41S14 73 12 48Z" fill="url(#bowlBody)" stroke="#6fa9d8" stroke-width="2.6"/>
+              <path d="M16 56h78" stroke="#8fc4ed" stroke-width="2" opacity=".7"/>
+              <path d="M18 48c3-19 71-19 74 0" fill="#fffdf6" stroke="#bcdcf3" stroke-width="2"/>
+              <path d="M23 45c1-15 9-23 21-23 8 0 11 5 14 11 3-7 8-11 16-11 12 0 20 8 21 23-8-7-22-10-36-10S31 38 23 45Z" fill="url(#riceTop)" stroke="#d8ecfa" stroke-width="1.6"/>
+              <g fill="#cfe7f8">
+                <ellipse cx="37" cy="35" rx="3" ry="1.6" transform="rotate(-18 37 35)"/>
+                <ellipse cx="50" cy="29" rx="3" ry="1.6" transform="rotate(10 50 29)"/>
+                <ellipse cx="64" cy="34" rx="3" ry="1.6" transform="rotate(-8 64 34)"/>
+                <ellipse cx="72" cy="42" rx="2.6" ry="1.4" transform="rotate(16 72 42)"/>
+              </g>
+              <path d="M46 66c3-4 8-5 11-2 2 2 1 5-2 6-2 1-4 0-5-2-1 3-4 4-6 2-2-1-1-4 2-4Z" fill="#6fa9d8"/>
+              <circle cx="50" cy="65" r=".9" fill="#fff"/>
+              <path d="M24 60c6 8 16 13 31 13s25-5 31-13" fill="none" stroke="#8fc4ed" stroke-width="2" opacity=".55"/>
+            </svg>
+            <span class="steam s1"></span><span class="steam s2"></span><span class="steam s3"></span>
+          </div>
+          <div id="crown" class="hidden" aria-hidden="true">
+            <svg viewBox="0 0 64 44" width="54" height="37">
+              <defs>
+                <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#fff3b0"/>
+                  <stop offset=".45" stop-color="#ffd15c"/>
+                  <stop offset="1" stop-color="#d99a22"/>
+                </linearGradient>
+              </defs>
+              <path d="M6 36 L3 13 L19 24 L32 6 L45 24 L61 13 L58 36 Z" fill="url(#gold)" stroke="#b97a14" stroke-width="2" stroke-linejoin="round"/>
+              <circle cx="32" cy="10" r="3.4" fill="#fff7c2" stroke="#b97a14" stroke-width="1.4"/>
+              <circle cx="6" cy="15" r="2.6" fill="#ffe98a" stroke="#b97a14" stroke-width="1.2"/>
+              <circle cx="58" cy="15" r="2.6" fill="#ffe98a" stroke="#b97a14" stroke-width="1.2"/>
+              <path d="M12 36 H52" stroke="#b97a14" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="pet-name">饭饭</div>
+  </div>
+
+  <div id="bubble" class="hit hidden" role="status">
+    <div class="bubble-head">
+      <img id="bubble-avatar" src="../../assets/icons/avatar.png" alt="">
+      <span id="bubble-name">饭饭</span>
+      <span id="bubble-badge" class="badge hidden">QQ</span>
+      <span id="bubble-time" class="bubble-time"></span>
+      <button id="bubble-close" title="收起">×</button>
+    </div>
+    <div id="bubble-text"></div>
+    <div class="bubble-tail"></div>
+  </div>
+
+  <div id="emote-card" class="hit hidden">
+    <img id="emote-img" alt="" draggable="false">
+    <div class="emote-shine"></div>
+  </div>
+
+  <div id="stats" class="hit hidden">
+    <div class="stats-title">饭饭的小账本</div>
+    <div class="stat-row"><span>QQ 吃掉</span><b id="stat-qq">--</b></div>
+    <div class="stat-row"><span>本场 DSH</span><b id="stat-dsh">--</b></div>
+    <div class="stat-row"><span>今天总数</span><b id="stat-total">--</b></div>
+    <div class="stat-row"><span>含缓存总量</span><b id="stat-cache">--</b></div>
+    <div class="stat-row"><span>开心值</span><b id="stat-joy">--</b></div>
+    <div class="stat-row"><span>互动值</span><b id="stat-bond">--</b></div>
+    <div class="stat-row"><span>心情（文件）</span><b id="stat-mood">--</b></div>
+    <div class="stat-row"><span>QQ 最近消息</span><b id="stat-qqtime">--</b></div>
+    <div class="stat-hint">Token 只算新输入 + 输出；缓存命中是“回锅饭”，不算饭量。</div>
+  </div>
+
+  <div id="hud" class="hit">
+    <div class="hud-bowl" aria-hidden="true">
+      <svg viewBox="0 0 40 34" width="30" height="26">
+        <path d="M5 14h30c0 10-5 16-15 16S5 24 5 14Z" fill="#eaf5ff" stroke="#8dc6f4" stroke-width="1.6"/>
+        <path d="M8 14c2-7 22-7 24 0" fill="#ffffff" stroke="#8dc6f4" stroke-width="1.2"/>
+        <path d="M12 8c1-3 4-4 6-2M22 7c2-3 5-3 7-1" fill="none" stroke="#bfe3ff" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M13 20h14" stroke="#a9d4f6" stroke-width="1.2" stroke-linecap="round"/>
+        <circle cx="20" cy="25" r="1.4" fill="#8dc6f4"/>
+      </svg>
+    </div>
+    <div class="hud-main">
+      <div class="hud-line1"><span id="hud-token">等数据…</span><span id="hud-goal"></span></div>
+      <div class="hud-bar"><div id="hud-fill"></div><i class="tick t1"></i><i class="tick t2"></i><i class="tick t3"></i></div>
+    </div>
+    <div class="hud-mood" title="开心值">
+      <span id="mood-face"></span>
+      <span id="mood-num">--</span>
+    </div>
+    <div id="hud-bond" title="互动值"><span class="bond-k">互动</span><span class="bond-k-short">互</span><b id="hud-bond-num">60</b></div>
+    <div id="hud-tier">日常</div>
+    <button id="hud-gear" title="设置" aria-label="设置">⚙</button>
+  </div>
+
+  <div id="status-chip" class="hit" data-state="loading">
+    <span class="dot"></span><span id="status-text">QQ 连接中</span>
+  </div>
+
+  <div id="menu" class="hit hidden">
+    <button data-act="pat"><span class="m-ico">♡</span>摸摸头</button>
+    <button data-act="feed"><span class="m-ico">🍚</span>喂白饭</button>
+    <button data-act="poke"><span class="m-ico">👉</span>戳一下</button>
+    <button data-act="drink"><span class="m-ico">🧋</span>喂奶茶</button>
+    <button data-act="praise"><span class="m-ico">✨</span>夸夸她</button>
+    <button data-act="sleep"><span class="m-ico">💤</span>让她睡</button>
+    <button data-act="talk"><span class="m-ico">💬</span>陪我说说话</button>
+    <div class="sep"></div>
+    <button data-act="settings"><span class="m-ico">⚙</span>设置</button>
+    <button data-act="pin"><span class="m-ico">📌</span>总在最前<i id="pin-mark">✓</i></button>
+    <div class="sep"></div>
+    <button data-act="hide"><span class="m-ico">🌙</span>藏到托盘</button>
+    <button data-act="quit" class="danger"><span class="m-ico">✕</span>退出</button>
+  </div>
+
+  <div id="settings" class="hit hidden">
+    <div class="panel">
+      <header>
+        <div>
+          <h2>饭饭的小灶</h2>
+          <p>Token 就是白饭，吃多少长多大。</p>
+        </div>
+        <button id="set-close" title="关闭">×</button>
+      </header>
+      <div class="set-body">
+        <section>
+          <div class="set-title">桌宠</div>
+          <label class="row"><span>大小 <em id="scale-val">100%</em></span>
+            <input id="set-scale" type="range" min="30" max="115" step="5" value="100">
+          </label>
+          <label class="row switch"><span>总在最前</span><input id="set-pin" type="checkbox"></label>
+          <label class="row switch"><span>音效</span><input id="set-sound" type="checkbox"></label>
+          <label class="row switch"><span>说话（系统语音）</span><input id="set-voice" type="checkbox"></label>
+        </section>
+
+        <section>
+          <div class="set-title">Token 形态</div>
+          <div class="token-summary"><b id="set-token">--</b><span> / 目标 </span><b id="set-goal">4.0M</b></div>
+          <div class="token-bar"><div id="set-token-fill"></div></div>
+          <label class="row"><span>每日目标 <em id="goal-val">4.0M</em></span>
+            <input id="set-goal-range" type="range" min="1" max="12" step="0.5" value="4">
+          </label>
+          <div class="preview-row">
+            <button data-preview="baby">饿了</button>
+            <button data-preview="daily">日常</button>
+            <button data-preview="full">吃饱了</button>
+            <button data-preview="queen">鲸王</button>
+            <button data-preview="token">求token</button>
+          </div>
+          <p class="hint">12% / 45% / 85% 三个门槛。每天零点重新开饭，缓存命中不算饭量。</p>
+        </section>
+
+        <section>
+          <div class="set-title">QQ 实时联动</div>
+          <label class="row switch"><span>看私聊（师父）</span><input id="set-watchqq" type="checkbox"></label>
+          <label class="row switch"><span>看群聊（被叫到才理）</span><input id="set-watchgroup" type="checkbox"></label>
+          <div class="mini-paths">
+            <div><span>数据</span><code id="path-data">data/</code></div>
+            <div><span>桥接</span><code id="path-bridge">--</code></div>
+            <div><span>心情</span><code id="path-mood">--</code></div>
+          </div>
+          <p class="hint">读取本机 QQ 桥的 social-v2.json；给饭饭的 QQ 发消息，桌宠会立刻冒泡。</p>
+        </section>
+
+        <section class="set-actions">
+          <button id="btn-reset-pos">回到右下角</button>
+          <button id="btn-open-data">打开数据目录</button>
+          <button id="btn-open-bridge">打开 QQ 桥接</button>
+          <button id="btn-quit" class="danger">退出桌宠</button>
+        </section>
+        <p class="version" id="version-line">饭饭 v1.0 · 本地运行，不联网</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="card-layer" class="hidden">
+    <div id="big-card">
+      <img id="big-card-img" alt="">
+      <div class="card-caption" id="big-card-caption">干饭中…</div>
+      <div class="card-spark s1">✦</div><div class="card-spark s2">✧</div><div class="card-spark s3">✦</div>
+    </div>
+  </div>
+
+  <div id="toast" class="hidden"></div>
+  <div id="debug" class="hidden"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
+
